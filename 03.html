@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora da Oficina</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora da Oficina</h1>
+
+  <!-- FORMULÁRIO -->
+  <input type="number" id="num1" placeholder="Primeiro valor">
+  <select id="operacao">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2" placeholder="Segundo valor">
+  <br>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    // FUNÇÃO
+    function calcular() {
+
+      // VARIÁVEIS
+      let n1 = Number(document.getElementById("num1").value);
+      let n2 = Number(document.getElementById("num2").value);
+      let op = document.getElementById("operacao").value;
+      let resultado;
+
+      // VALIDAÇÃO
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById("resultado").textContent = "Digite valores válidos!";
+        return;
+      }
+
+      // CONDICIONAIS
+      if (op === "+") {
+        resultado = n1 + n2;
+      } else if (op === "-") {
+        resultado = n1 - n2;
+      } else if (op === "*") {
+        resultado = n1 * n2;
+      } else if (op === "/") {
+        if (n2 === 0) {
+          document.getElementById("resultado").textContent = "Não pode dividir por zero!";
+          return;
+        }
+        resultado = n1 / n2;
+      }
+
+      // DOM (MOSTRAR RESULTADO)
+      document.getElementById("resultado").textContent = "Resultado: " + resultado;
+    }
+  </script>
+
+</body>
+</html>

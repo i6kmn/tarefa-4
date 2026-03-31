@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .erro {
+      color: red;
+      font-size: 14px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cadastro</h1>
+
+  <!-- FORMULÁRIO -->
+  <input type="text" id="nome" placeholder="Digite seu nome">
+  <p id="erroNome" class="erro"></p>
+
+  <input type="text" id="email" placeholder="Digite seu email">
+  <p id="erroEmail" class="erro"></p>
+
+  <button onclick="validar()">Cadastrar</button>
+
+  <script>
+    function validar() {
+
+      // VARIÁVEIS
+      let nome = document.getElementById("nome").value;
+      let email = document.getElementById("email").value;
+
+      let erroNome = document.getElementById("erroNome");
+      let erroEmail = document.getElementById("erroEmail");
+
+      // LIMPAR ERROS
+      erroNome.textContent = "";
+      erroEmail.textContent = "";
+
+      let valido = true;
+
+      // VALIDAÇÃO NOME
+      if (nome.trim() === "") {
+        erroNome.textContent = "O nome é obrigatório!";
+        valido = false;
+      }
+
+      // VALIDAÇÃO EMAIL
+      if (!email.includes("@")) {
+        erroEmail.textContent = "Email inválido!";
+        valido = false;
+      }
+
+      // RESULTADO FINAL
+      if (valido) {
+        alert("Cadastro realizado com sucesso!");
+      }
+    }
+  </script>
+
+</body>
+</html>

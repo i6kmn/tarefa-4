@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Professor Automatizado</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Professor Automatizado</h1>
+
+  <!-- FORMULÁRIO -->
+  <input type="number" id="nota1" placeholder="Primeira nota">
+  <input type="number" id="nota2" placeholder="Segunda nota">
+  <br>
+
+  <button onclick="calcularMedia()">Ver Resultado</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    function calcularMedia() {
+
+      // VARIÁVEIS
+      let n1 = Number(document.getElementById("nota1").value);
+      let n2 = Number(document.getElementById("nota2").value);
+      let resultado = document.getElementById("resultado");
+
+      // VALIDAÇÃO
+      if (isNaN(n1) || isNaN(n2)) {
+        resultado.textContent = "Digite notas válidas!";
+        resultado.style.color = "black";
+        return;
+      }
+
+      // OPERADOR
+      let media = (n1 + n2) / 2;
+
+      // CONDICIONAIS
+      if (media >= 7) {
+        resultado.textContent = "Aprovado (Média: " + media.toFixed(2) + ")";
+        resultado.style.color = "green";
+      } else if (media >= 5) {
+        resultado.textContent = "Recuperação (Média: " + media.toFixed(2) + ")";
+        resultado.style.color = "orange";
+      } else {
+        resultado.textContent = "Reprovado (Média: " + media.toFixed(2) + ")";
+        resultado.style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>

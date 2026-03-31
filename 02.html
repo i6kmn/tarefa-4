@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Porteiro Digital</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Porteiro Digital</h1>
+
+  <!-- FORMULÁRIO -->
+  <input type="number" id="idade" placeholder="Digite sua idade">
+  <br>
+  <button onclick="verificarIdade()">Verificar</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    function verificarIdade() {
+
+      // VARIÁVEL
+      let idade = Number(document.getElementById("idade").value);
+
+      // SELEÇÃO DO DOM
+      let resultado = document.getElementById("resultado");
+
+      if (isNaN(idade)) {
+        resultado.textContent = "Digite uma idade válida!";
+        resultado.style.color = "black";
+        return;
+      }
+
+      // CONDICIONAL
+      if (idade >= 18) {
+        resultado.textContent = "Entrada permitida";
+        resultado.style.color = "green"; // ALTERANDO ESTILO
+      } else {
+        resultado.textContent = "Entrada proibida";
+        resultado.style.color = "red"; // ALTERANDO ESTILO
+      }
+    }
+  </script>
+
+</body>
+</html>

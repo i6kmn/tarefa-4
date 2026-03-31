@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro Completo</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    form {
+      max-width: 300px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .erro {
+      color: red;
+      font-size: 12px;
+      text-align: left;
+      margin: 0;
+    }
+
+    #sucesso {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cadastro</h1>
+
+  <form onsubmit="cadastrar(event)">
+    <input type="text" id="nome" placeholder="Nome">
+    <p id="erroNome" class="erro"></p>
+
+    <input type="text" id="email" placeholder="Email">
+    <p id="erroEmail" class="erro"></p>
+
+    <input type="number" id="idade" placeholder="Idade">
+    <p id="erroIdade" class="erro"></p>
+
+    <input type="password" id="senha" placeholder="Senha">
+    <p id="erroSenha" class="erro"></p>
+
+    <input type="password" id="confirmarSenha" placeholder="Confirmar senha">
+    <p id="erroConfirmar" class="erro"></p>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p id="sucesso"></p>
+
+  <script>
+    function cadastrar(event) {
+      event.preventDefault(); // impedir envio do form
+
+      // VARIÁVEIS
+      let nome = document.getElementById("nome").value;
+      let email = document.getElementById("email").value;
+      let idade = Number(document.getElementById("idade").value);
+      let senha = document.getElementById("senha").value;
+      let confirmar = document.getElementById("confirmarSenha").value;
+
+      // ELEMENTOS DE ERRO
+      let erroNome = document.getElementById("erroNome");
+      let erroEmail = document.getElementById("erroEmail");
+      let erroIdade = document.getElementById("erroIdade");
+      let erroSenha = document.getElementById("erroSenha");
+      let erroConfirmar = document.getElementById("erroConfirmar");
+      let sucesso = document.getElementById("sucesso");
+
+      // LIMPAR ERROS
+      erroNome.textContent = "";
+      erroEmail.textContent = "";
+      erroIdade.textContent = "";
+      erroSenha.textContent = "";
+      erroConfirmar.textContent = "";
+      sucesso.textContent = "";
+
+      let valido = true;
+
+      // VALIDAÇÕES
+      if (nome.trim() === "") {
+        erroNome.textContent = "Nome obrigatório!";
+        valido = false;
+      }
+
+      if (!email.includes("@")) {
+        erroEmail.textContent = "Email inválido!";
+        valido = false;
+      }
+
+      if (isNaN(idade) || idade < 18) {
+        erroIdade.textContent = "Idade deve ser 18 ou mais!";
+        valido = false;
+      }
+
+      if (senha.length < 8) {
+        erroSenha.textContent = "Senha deve ter no mínimo 8 caracteres!";
+        valido = false;
+      }
+
+      if (senha !== confirmar) {
+        erroConfirmar.textContent = "As senhas não coincidem!";
+        valido = false;
+      }
+
+      // SUCESSO
+      if (valido) {
+        sucesso.textContent = "Cadastro realizado com sucesso! ✅";
+
+        // LIMPAR FORMULÁRIO
+        document.querySelector("form").reset();
+      }
+    }
+  </script>
+
+</body>
+</html>

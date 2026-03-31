@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Votação da Turma</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #vencedor {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Votação da Turma 🗳️</h1>
+
+  <!-- BOTÕES -->
+  <button onclick="votar(1)">Ana</button>
+  <button onclick="votar(2)">Bruno</button>
+  <button onclick="votar(3)">Carlos</button>
+
+  <!-- RESULTADOS -->
+  <div id="resultado">
+    <p>Ana: <span id="v1">0</span></p>
+    <p>Bruno: <span id="v2">0</span></p>
+    <p>Carlos: <span id="v3">0</span></p>
+  </div>
+
+  <button onclick="mostrarVencedor()">Ver vencedor</button>
+
+  <p id="vencedor"></p>
+
+  <script>
+    // VARIÁVEIS
+    let votos1 = 0;
+    let votos2 = 0;
+    let votos3 = 0;
+
+    // FUNÇÃO DE VOTO
+    function votar(candidato) {
+
+      if (candidato === 1) {
+        votos1++;
+        document.getElementById("v1").textContent = votos1;
+      } else if (candidato === 2) {
+        votos2++;
+        document.getElementById("v2").textContent = votos2;
+      } else if (candidato === 3) {
+        votos3++;
+        document.getElementById("v3").textContent = votos3;
+      }
+    }
+
+    // FUNÇÃO PARA MOSTRAR VENCEDOR
+    function mostrarVencedor() {
+      let texto = "";
+
+      if (votos1 > votos2 && votos1 > votos3) {
+        texto = "Ana está ganhando!";
+      } else if (votos2 > votos1 && votos2 > votos3) {
+        texto = "Bruno está ganhando!";
+      } else if (votos3 > votos1 && votos3 > votos2) {
+        texto = "Carlos está ganhando!";
+      } else {
+        texto = "Empate!";
+      }
+
+      document.getElementById("vencedor").textContent = texto;
+    }
+  </script>
+
+</body>
+</html>

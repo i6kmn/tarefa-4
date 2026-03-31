@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo de Adivinhação</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    #mensagem {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Jogo de Adivinhação</h1>
+
+  <input type="number" id="palpite" placeholder="Digite um número (1 a 20)">
+  <br>
+  <button onclick="tentar()">Tentar</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <p id="mensagem"></p>
+  <p id="tentativas"></p>
+
+  <script>
+    // VARIÁVEIS
+    let numeroSecreto;
+    let tentativas;
+
+    // FUNÇÃO PARA INICIAR/REINICIAR O JOGO
+    function iniciarJogo() {
+      numeroSecreto = Math.floor(Math.random() * 20) + 1;
+      tentativas = 0;
+
+      document.getElementById("mensagem").textContent = "";
+      document.getElementById("tentativas").textContent = "Tentativas: 0";
+      document.getElementById("palpite").value = "";
+    }
+
+    // FUNÇÃO DE TENTATIVA
+    function tentar() {
+      let palpite = Number(document.getElementById("palpite").value);
+      let mensagem = document.getElementById("mensagem");
+      let tentativasTexto = document.getElementById("tentativas");
+
+      if (isNaN(palpite) || palpite < 1 || palpite > 20) {
+        mensagem.textContent = "Digite um número entre 1 e 20!";
+        return;
+      }
+
+      tentativas++;
+
+      if (palpite > numeroSecreto) {
+        mensagem.textContent = "Muito alto!";
+      } else if (palpite < numeroSecreto) {
+        mensagem.textContent = "Muito baixo!";
+      } else {
+        mensagem.textContent = "Acertou! 🎉";
+      }
+
+      tentativasTexto.textContent = "Tentativas: " + tentativas;
+    }
+
+    // FUNÇÃO REINICIAR
+    function reiniciar() {
+      iniciarJogo();
+    }
+
+    // INICIAR AO ABRIR
+    iniciarJogo();
+  </script>
+
+</body>
+</html>
